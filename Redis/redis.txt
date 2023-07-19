@@ -1,0 +1,7 @@
+The above statement is explaining the concept of horizontal scaling in web servers. Horizontal scaling refers to the practice of increasing the number of servers that handle requests for a web application, rather than increasing the resources (such as memory or CPU) of a single server.
+
+When using horizontal scaling, the application instances run as separate processes on different servers, and therefore do not share the same memory space. This means that objects and data created in one instance of the app are not accessible to other instances. This can be a problem when trying to maintain state or session-related data, as the data will not persist across different instances.
+
+To overcome this limitation, the statement suggests using an in-memory datastore like Redis to store session-related data and state. Redis is a popular in-memory data store that can be used to store and retrieve data quickly. By storing session-related data in Redis, all instances of the app can access the same data, allowing for persistence of state across different instances of the app.
+
+In summary, horizontal scaling allows for easy scaling and more robustness of a web application but objects and data created in one instance of the app are not accessible to other instances, that's why using in-memory datastore like Redis to store session-related data and state is suggested to overcome this limitation.

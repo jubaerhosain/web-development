@@ -1,0 +1,17 @@
+Rate limiting is a technique used to control the rate at which incoming requests are processed or served by an application, API, or server. It restricts the number of requests a client or user can make within a specified time frame. The primary purpose of rate limiting is to prevent abuse, protect the server from excessive usage, and ensure fair usage of resources for all users.
+
+There are several reasons why rate limiting is needed:
+
+1. **Protecting Against DDoS Attacks**: Distributed Denial of Service (DDoS) attacks involve overwhelming a server with a massive number of requests, causing it to become unavailable. Rate limiting helps mitigate the impact of such attacks by limiting the number of requests that can be processed within a given time period, making it harder for attackers to overload the server.
+
+2. **Preventing API Abuse**: APIs (Application Programming Interfaces) are endpoints that allow applications to communicate with each other. Without rate limiting, a single client could excessively use an API, monopolizing server resources and degrading performance for other users. Rate limiting ensures fair usage and prevents abuse of API resources.
+
+3. **Managing Server Load**: In cases of sudden traffic spikes or bursts, rate limiting can help stabilize server load by capping the number of incoming requests. This prevents the server from becoming overwhelmed and maintains a more consistent level of service for all users.
+
+4. **Enhancing Security**: Rate limiting can be part of a defense mechanism against brute-force attacks. For example, if there are multiple login attempts within a short period from the same IP address, rate limiting can block further login attempts from that IP, protecting against unauthorized access.
+
+5. **Compliance with Service Agreements**: Some services or APIs have usage limits defined in their terms of service or agreements. Rate limiting ensures that clients adhere to these limitations.
+
+6. **Resource Conservation**: Rate limiting helps ensure that server resources, such as CPU, memory, and bandwidth, are efficiently utilized, preventing one client from monopolizing resources.
+
+Overall, rate limiting is an essential tool for maintaining the stability, security, and availability of applications, APIs, and servers. By controlling the rate of incoming requests, it helps prevent misuse, protects against certain types of attacks, and promotes fair resource allocation among users.
