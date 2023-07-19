@@ -1,0 +1,23 @@
+**Difference between Load Balancing and Rate Limiting:**
+
+1. **Functionality:**
+   - Load Balancing: It focuses on distributing incoming requests among multiple backend servers to ensure even resource utilization and improved performance.
+   - Rate Limiting: It is about controlling the rate at which requests are processed or served, restricting the number of requests a client can make within a specific time frame.
+
+2. **Purpose:**
+   - Load Balancing: Aims to achieve high availability, scalability, and fault tolerance by spreading the workload across multiple servers to prevent overloading any single server.
+   - Rate Limiting: Intends to prevent abuse, protect servers from excessive usage, and ensure fair resource allocation among clients by limiting the number of requests they can make within a given time.
+
+3. **Location:**
+   - Load Balancing: Operates at the front-end, usually within a network's entry point, to distribute incoming requests across backend servers.
+   - Rate Limiting: Can be implemented at different levels, such as the API gateway, web server, or application level, to control the rate of incoming requests.
+
+4. **Scope:**
+   - Load Balancing: Typically applies to distributing traffic across a pool of backend servers hosting the same application or service.
+   - Rate Limiting: Applies to controlling individual client requests to prevent misuse and ensure fair usage.
+
+5. **Impact on Performance:**
+   - Load Balancing: Enhances performance by optimizing resource usage and preventing bottlenecks.
+   - Rate Limiting: Can help maintain performance by preventing clients from overwhelming the server with too many requests.
+
+In summary, load balancing is about distributing traffic across multiple servers for improved performance and high availability, while rate limiting is about controlling the rate of incoming requests to protect servers from abuse and ensure fair usage of resources. Both techniques are crucial for building robust and efficient systems, and they often complement each other in complex web infrastructures.
