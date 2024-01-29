@@ -1,0 +1,31 @@
+Collection:
+Example 1: /users represents a collection of user accounts.
+Example 2: /products represents a collection of products in an e-commerce system.
+
+Resource:
+Example 1: /users/{userId} represents a specific user account.
+Example 2: /products/{productId} represents a specific product.
+
+Pagination:
+Example 1: /users?page=2&limit=10 retrieves the second page of users with a limit of 10 users per page.
+Example 2: /products?offset=20&limit=5 retrieves 5 products starting from the 21st product.
+
+Filtering and Sorting:
+Example 1: /users?status=active retrieves active users.
+Example 2: /products?category=electronics&sort=price retrieves electronics products sorted by price.
+
+Nested Resources:
+Example 1: /users/{userId}/orders retrieves the orders associated with a specific user.
+Example 2: /products/{productId}/reviews retrieves the reviews associated with a specific product.
+
+Versioning:
+Example 1: /v1/users represents the version 1 of the user accounts collection.
+Example 2: /v2/products represents the version 2 of the products collection.
+
+HATEOAS (Hypermedia as the Engine of Application State):
+Example 1: The response for a user resource includes links to related resources like /users/{userId}/orders or /users/{userId}/profile.
+Example 2: The response for a product resource includes links to related resources like /products/{productId}/reviews or /products/{productId}/similar.
+
+Singleton Sub-resources:
+Example 1: /users/{userId}/settings represents the settings associated with a specific user.
+Example 2: /products/{productId}/inventory represents the inventory information for a specific product.

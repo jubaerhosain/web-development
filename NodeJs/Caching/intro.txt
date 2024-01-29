@@ -1,0 +1,18 @@
+Serverside:
+    Resource-intensive operations: 
+    Shared data: 
+    Dynamic content: 
+    
+Clientside:
+    Personalized data:
+    Offline access:
+    Client performance optimization: 
+    
+    
+Serverside:
+    In-Memory Caching: Redis...
+    Response Caching: cache-control, etag
+    Custom Middleware: 
+    
+    
+    

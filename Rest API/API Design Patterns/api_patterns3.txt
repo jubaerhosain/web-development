@@ -1,0 +1,51 @@
+Collection
+Resource
+Pagination
+Filtering and Sorting
+Nested Resources
+Versioning
+HATEOAS (Hypermedia as the Engine of Application State)
+Singleton Sub-resources
+Bulk Operations
+Search
+Partial Updates (PATCH)
+Rate Limiting
+Caching
+Webhooks
+Asynchronous Operations
+Error Handling and Error Codes
+Content Negotiation
+Content Compression
+Request/Response Validation
+Cross-Origin Resource Sharing (CORS)
+Authentication (Basic, OAuth, JWT)
+Authorization (Role-based, Permissions)
+Cross-Resource Relationships
+Batch Operations
+Soft Deletes
+Event-Driven APIs
+Server-Sent Events (SSE)
+Long Polling
+File Uploads
+Geo-spatial Queries
+Redirects
+Forwarding Requests
+Retry and Retry-After
+WebSockets
+Multi-Tenancy
+Security Best Practices (HTTPS, TLS)
+Request Throttling
+Distributed Transactions
+Request Logging and Audit Trails
+Change Tracking (ETag, Last-Modified)
+Composite Resources
+Composite Operations
+Health Checks
+Server-Side Filtering
+Request Compression
+Custom Headers for Metadata
+Request Retry
+Data Validation (Input and Output)
+API Documentation (OpenAPI, Swagger)
+API Usage Analytics
+

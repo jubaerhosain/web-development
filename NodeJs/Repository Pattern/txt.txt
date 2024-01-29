@@ -1,0 +1,15 @@
+- app/
+  - models/
+    - User.js
+  - repositories/
+    - UserRepository.js
+  - controllers/
+    - UserController.js
+  - routes/
+    - userRoutes.js
+- config/
+  - database.js
+- server.js
+
+
+

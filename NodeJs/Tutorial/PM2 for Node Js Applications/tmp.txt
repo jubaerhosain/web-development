@@ -1,0 +1,6 @@
+pm2 start index.js
+pm2 logs
+pm2 stop index.js
+pm2 start index.js "My App" --watch
+pm2 stop "My App"
+pm2 stop "index"

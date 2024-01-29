@@ -1,0 +1,6 @@
+why mongoose package is used instead of mongodb package
+
+// relations
+Todo -> User (one to one)
+User -> Tod (one to many)
+

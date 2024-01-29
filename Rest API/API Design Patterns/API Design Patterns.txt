@@ -1,0 +1,138 @@
+1. SINGLETONE SUB-RESOURCES: sub-resource exists only once for a parent resource 
+    GET /users/{user_id}/profile
+    GET /users/{userId}/settings
+    
+2. CROSS REFERENCE/Hypermedia Linking: establish relationships and provide references between different resources
+discover related resources and navigate through the API effortlessly
+a. Data Optimization
+b. Reducing Redundancy
+c. Managing Complexity
+
+    GET /books/{book_id}
+    {
+      "title": "Book 1",
+      "author": {
+        "id": "author123",
+        "name": "John Doe",
+        "links": [
+          {
+            "rel": "details",
+            "href": "/authors/author123"
+          }
+        ]
+      }
+    }
+    
+    GET /authors/{authorId}
+    {
+      "id": "author123",
+      "name": "John Doe",
+      "bio": "An accomplished author with multiple bestselling books.",
+      "website": "https://johndoe.com",
+      "books": [
+        {
+          "title": "Book 1",
+          "year": 2021
+        },
+        {
+          "title": "Book 3",
+          "year": 2022
+        }
+      ]
+    }
+    
+    discoverability and navigability 
+    client can dynamically explore
+    optimize response payload size by only providing essential information and allowing clients to request additional details on-demand.
+
+
+    Example use cases for the Cross-Reference pattern include providing links to related resources 
+    like author details for a book, comments for a blog post, or products in a category.
+
+    
+3. Association Resource/Relationship Resource: represent and manage a specific relationship or association between resources
+    GET /users/{user_id}/follows/{follow_id}
+    {
+        follower: users/{follower_id}
+        followed: users/{followed_id}
+    }
+    
+    GET /users/{userId}/favorites
+    POST /users/{userId}/favorites
+    DELETE /users/{userId}/favorites/{postId}
+    
+    Example use cases for the Association Resource pattern include managing friendships between users, 
+    favorite items, likes, or any other explicit relationships that have associated data or operations.
+    
+    
+    
+    
+4. Polymorphism: resources to be treated as instances of their specific types or their parent types
+    products/{product_id}
+    {
+        type: book [type dosen't matter, product_id matters]
+        other attributes...
+    }
+    
+    products/{product_id}
+    {
+        type: toy [type dosen't matter, product_id matters]
+        other attributes...
+    }
+    
+    Resource Variations
+    Consistent Attribute Handling
+    Supporting Cross-Cutting Operations
+    
+    
+    
+COLLECTIVE OPERATIONS:
+
+5. Batch operations: 
+multiple operations to be performed on a collection of resources in a single API call
+includes a set of operations to be executed in a single transaction. 
+reduces the overhead of multiple network requests and improves overall performance.
+
+    POST /profiles/batch
+
+7. Criteria based delation
+8. Anonymouys writes
+9. Pagination
+    users?page=2&limit=10
+    
+10. filtering
+    products?category=electronics&price_less_than=1000
+    
+11. importing and exporting
+
+12. safety and security
+    1. versioning and compatibility
+        v1/users
+    2. soft delation
+    3. request duplication
+    4. request validation
+    5. resource revision
+    6. request retrial
+    7. request authentication
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

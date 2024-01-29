@@ -1,0 +1,15 @@
+{
+  "name": "uptime-monitoring-api",
+  "version": "1.0.0",
+  "description": "A REST API to monitor up or down time of user defined links",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Md. Jubaer Hosain",
+  "license": "ISC",
+  "dependencies": {
+    "twilio": "^3.83.1"
+  }
+}

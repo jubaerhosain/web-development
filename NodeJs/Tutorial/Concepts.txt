@@ -1,0 +1,15 @@
+1. Asyncronous
+2. Non-blocking I/O
+3. Event loop
+4. lib uv (create assistant for node js, gives non-blocking i/o concept, controls karnel)
+5. environment variable and their uses
+
+Node.js is suitable for I/O intensive task.
+Node.js is not suitable for CPU intensive task.
+
+
+V8
+libuv
+llhttp
+c-ares
+OpenSSL

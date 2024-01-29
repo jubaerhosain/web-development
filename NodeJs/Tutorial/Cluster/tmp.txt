@@ -1,0 +1,4 @@
+
+// -n = number of requests
+// -c = concurrency level
+loadtest -n 1000 -c 100 http://localhost:3000

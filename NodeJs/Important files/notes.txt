@@ -1,0 +1,5 @@
+1. In Node.js, CPU bound applications block the event and cause other requests to be held up.
+2. how to use redis with nodejs cluster such that all cluster process have same common redis cache?
+
+3. Instead of db checkers I should use db middleware instead to verify some conditions with db query
+4. Put some database queries in validator while needed [in case of form validation]

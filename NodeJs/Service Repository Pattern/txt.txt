@@ -1,0 +1,24 @@
+- app/
+  - models/
+    - User.js
+  - repositories/
+    - UserRepository.js
+  - controllers/
+    - UserController.js
+  - services/
+    - UserService.js
+  - routes/
+    - userRoutes.js
+- config/
+  - database.js
+- server.js
+
+
+controller -> service -> repository -> models
+
+controller -> req res, data validating, data parsing, modifying req-res
+services -> all business logic, use repository [never pass req, res to the services]
+repository [data access layer] - use models, queriying database
+
+
+

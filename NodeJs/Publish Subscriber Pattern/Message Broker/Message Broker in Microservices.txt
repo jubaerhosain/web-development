@@ -1,0 +1,40 @@
+Message Brokers: Apache Kafka, RabbitMQ, and Amazon SNS/SQS.
+
+
+In a microservices architecture, communication between microservices is typically achieved through the use of asynchronous messaging and events. One popular approach for sending events between microservices is by using an event bus or message broker.
+
+Here's a high-level overview of how you can send events from one microservice to another using events:
+
+1. **Choose an Event Bus / Message Broker:**
+
+Select a suitable event bus or message broker to act as the central communication channel for your microservices. Some popular choices include Apache Kafka, RabbitMQ, and Amazon SNS/SQS.
+
+2. **Setup the Event Bus / Message Broker:**
+
+Install and configure the event bus or message broker. Set up the necessary topics or channels where microservices will publish and subscribe to events.
+
+3. **Microservice A (Publisher):**
+
+In the microservice that generates the event (the publisher), you need to include a client library for the chosen event bus. This library will allow the microservice to send events to the event bus.
+
+When an event occurs in Microservice A that needs to be communicated to other microservices, Microservice A will publish the event to the event bus with the necessary data.
+
+4. **Microservice B (Subscriber):**
+
+In the microservice that needs to react to the event (the subscriber), you also need to include the client library for the event bus. This library will allow the microservice to subscribe to events from the event bus.
+
+Microservice B subscribes to the relevant topic or channel on the event bus. When an event is published on that topic, Microservice B will receive the event data and can process it accordingly.
+
+5. **Event Handling:**
+
+In both Microservice A and Microservice B, you need to define how the events will be handled when they are received.
+
+- In Microservice A (the publisher), you determine the event's content and format before sending it to the event bus.
+
+- In Microservice B (the subscriber), you define the logic for processing the received event data. This could involve updating the local database, triggering business logic, or generating other events for downstream processing.
+
+6. **Decoupled Communication:**
+
+By using an event bus, you achieve loose coupling between microservices. Microservice A doesn't need to know which microservices are interested in its events, and Microservice B doesn't need to know where the events originated. This decoupling allows for flexibility and scalability in your microservices architecture.
+
+Overall, using an event bus or message broker for inter-microservice communication with events is a powerful way to enable real-time, asynchronous communication between microservices in a microservices architecture. It promotes modularity, scalability, and easier maintenance of the individual services, while facilitating a more event-driven and responsive system as a whole.

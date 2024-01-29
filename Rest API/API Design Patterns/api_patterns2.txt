@@ -1,0 +1,121 @@
+Collection:
+
+/users represents a collection of user accounts.
+/products represents a collection of products in an e-commerce system.
+Resource:
+
+/users/{userId} represents a specific user account.
+/products/{productId} represents a specific product.
+Pagination:
+
+/users?page=2&limit=10 retrieves the second page of users with a limit of 10 users per page.
+/products?offset=20&limit=5 retrieves 5 products starting from the 21st product.
+Filtering and Sorting:
+
+/users?status=active retrieves active users.
+/products?category=electronics&sort=price retrieves electronics products sorted by price.
+Nested Resources:
+
+/users/{userId}/orders retrieves the orders associated with a specific user.
+/products/{productId}/reviews retrieves the reviews associated with a specific product.
+Versioning:
+
+/v1/users represents the version 1 of the user accounts collection.
+/v2/products represents the version 2 of the products collection.
+HATEOAS (Hypermedia as the Engine of Application State):
+
+The response for a user resource includes links to related resources like /users/{userId}/orders or /users/{userId}/profile.
+The response for a product resource includes links to related resources like /products/{productId}/reviews or /products/{productId}/similar.
+Singleton Sub-resources:
+
+/users/{userId}/settings represents the settings associated with a specific user.
+/products/{productId}/inventory represents the inventory information for a specific product.
+Bulk Operations:
+
+POST /users/bulk-create creates multiple user accounts in a single request.
+DELETE /products/bulk-delete deletes multiple products in a single request.
+Search:
+
+/products/search?q=keyword searches for products based on a keyword.
+/users/search?name=John&city=London searches for users with the name "John" in London.
+Partial Updates (PATCH):
+PATCH /users/{userId} updates specific fields of a user account.
+PATCH /products/{productId} updates specific fields of a product.
+Rate Limiting:
+Limiting the number of requests per minute for a specific API endpoint.
+Caching:
+Adding caching headers (e.g., Cache-Control, ETag) to responses for improved performance.
+Webhooks:
+Registering a callback URL to receive notifications when specific events occur.
+Asynchronous Operations:
+POST /users/async-create asynchronously creates a user account and returns a task ID to track progress.
+GET /users/async-create/{taskId} retrieves the status of an asynchronously created user account.
+Error Handling and Error Codes:
+Returning appropriate HTTP status codes (e.g., 400, 404, 500) and error messages in response to erroneous requests.
+Content Negotiation:
+Sending and accepting different data formats (e.g., JSON, XML) based on the Accept and Content-Type headers.
+Content Compression:
+Compressing response payloads using gzip or other compression algorithms.
+Request/Response Validation:
+Validating incoming request payloads for required fields and formats.
+Validating response payloads for expected data and formats.
+Cross-Origin Resource Sharing (CORS):
+Allowing or restricting access to API resources from different origins using CORS headers.
+Authentication (Basic, OAuth, JWT):
+Authenticating API consumers using basic authentication, OAuth, or JSON Web Tokens (JWT).
+Authorization (Role-based, Permissions):
+Implementing role-based access control (RBAC) or permissions-based authorization to restrict access to certain resources.
+Cross-Resource Relationships:
+Establishing relationships between resources using resource identifiers.
+For example, /users/{userId}/orders/{orderId} represents a specific order associated with a user.
+Batch Operations:
+POST /users/batch-update performs batch updates on multiple user accounts in a single request.
+GET /products/batch-info?ids=1,2,3 retrieves information about multiple products based on their IDs.
+Soft Deletes:
+Marking a resource as deleted without actually removing it from the system.
+For example, /users/{userId} can be marked as deleted but still retrievable for administrative purposes.
+Event-Driven APIs:
+Publishing events or notifications related to resources, allowing consumers to subscribe and receive updates.
+Server-Sent Events (SSE):
+Establishing a long-lived connection between the server and client to stream real-time updates.
+Long Polling:
+Holding open a request until new data or updates are available.
+File Uploads:
+POST /images accepts multipart/form-data requests to upload images.
+PUT /documents/{documentId} allows replacing an existing document with a new file.
+Geo-spatial Queries:
+/locations?latitude=xxx&longitude=yyy&radius=10 retrieves locations within a specific radius of a given latitude and longitude.
+Redirects:
+Returning a redirection status code (e.g., 301, 302) to direct clients to a new resource URL.
+Forwarding Requests:
+Proxying or forwarding requests from one endpoint to another.
+For example, forwarding /v1/users to /v2/users for backward compatibility.
+Retry and Retry-After:
+Returning appropriate retry and retry-after headers to indicate when a request can be retried.
+WebSockets:
+Establishing bidirectional, full-duplex communication between clients and servers.
+Multi-Tenancy:
+Supporting multiple tenants or customers within the same API infrastructure.
+Security Best Practices (HTTPS, TLS):
+Enforcing secure communication using HTTPS and Transport Layer Security (TLS).
+Request Throttling:
+Limiting the rate of incoming requests to prevent abuse or excessive resource consumption.
+Distributed Transactions:
+Coordinating and ensuring consistency across multiple API calls or services.
+Request Logging and Audit Trails:
+Logging requests and responses for monitoring, debugging, and auditing purposes.
+Change Tracking (ETag, Last-Modified):
+Using ETag or Last-Modified headers to track changes and enable conditional requests.
+Composite Resources:
+Creating composite resources that encapsulate related data from multiple sources.
+For example, /users/{userId}/profile combines user account data with user profile data.
+Composite Operations:
+Performing atomic operations involving multiple resources within a single API call.
+Health Checks:
+Providing endpoints to check the health and status of the API or its dependencies.
+Server-Side Filtering:
+Filtering large collections of data on the server side to improve performance and reduce network traffic.
+Request Compression:
+Compressing request payloads to reduce the size of data being sent.
+Custom Headers for Metadata:
+Including custom headers in API responses to convey additional
