@@ -1,0 +1,7 @@
+Authorization (Access Control) Strategies:
+1. Access Control Lists (ACLs)
+2. Role-Based Access Control (RBAC):
+3. Attribute-Based Access Control (ABAC):
+4. Policy-Based Access Control (PBAC):
+5. Claim Based Access Control
+
