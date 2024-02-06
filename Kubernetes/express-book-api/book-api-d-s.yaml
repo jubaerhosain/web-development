@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: book-api-deployment
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            app: book-api
+    template:
+        metadata:
+            labels:
+                app: book-api
+        spec:
+            containers:
+                - name: book-api-container
+                  image: jubaerhosain/express-book-api:01
+                  env:
+                      - name: PORT
+                        value: "5000"
+                      - name: MYSQL_DB_NAME
+                        value: "code_samurai_2024"
+                      - name: MYSQL_USERNAME
+                        value: "root"
+                      - name: MYSQL_PASSWORD
+                        value: "samurai"
+                      - name: MYSQL_HOST
+                        value: "mysql-service"
+                      - name: JWT_EXPIRY
+                        value: "2629800000"
+                      - name: JWT_SECRET
+                        value: "code"
+                      - name: COOKIE_SECRET
+                        value: "code"
+                      - name: AUTH_COOKIE_NAME
+                        value: "name"
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: book-api-service
+spec:
+    ports:
+        - name: http
+          port: 5000
+          targetPort: 5000
+    selector:
+        app: book-api
+
+    type: LoadBalancer
