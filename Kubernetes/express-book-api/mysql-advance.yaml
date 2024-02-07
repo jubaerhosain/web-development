@@ -16,11 +16,16 @@ spec:
         - name: mysql-db-container
           image: mysql:latest
           # why this is not working ?
-          envFrom:
-            - configMapRef:
-                name: mysql-configmap
+          # envFrom:
+          #   - configMapRef:
+          #       name: mysql-configmap
           ports:
             - containerPort: 3306
+
+          # try this
+        #   envFrom: null
+        # - configMapRef:
+        #       name: mysql-configmap
 
 ---
 apiVersion: v1
