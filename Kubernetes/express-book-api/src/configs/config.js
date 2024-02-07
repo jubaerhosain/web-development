@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-export default {
+const config = {
     port: process.env.PORT,
     mysql: {
         database: process.env.MYSQL_DB_NAME,
@@ -19,3 +19,7 @@ export default {
         authCookieName: process.env.AUTH_COOKIE_NAME,
     },
 };
+
+console.log(config);
+
+export default config;

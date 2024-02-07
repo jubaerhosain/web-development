@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: book-api-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: book-api
+  template:
+    metadata:
+      labels:
+        app: book-api
+    spec:
+      containers:
+        - name: book-api-container
+          image: jubaerhosain/express-book-api:02
+          env:
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: book-api-configmap
+                  key: PORT
+
+            - name: MYSQL_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: book-api-configmap
+                  key: MYSQL_USERNAME
+
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: book-api-configmap
+                  key: MYSQL_PASSWORD
+
+            - name: MYSQL_DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: book-api-configmap
+                  key: MYSQL_DB_NAME
+
+            - name: MYSQL_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: book-api-configmap
+                  key: MYSQL_HOST
+
+            - name: JWT_EXPIRY
+              valueFrom:
+                configMapKeyRef:
+                  name: book-api-configmap
+                  key: JWT_EXPIRY
+
+            - name: JWT_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  name: book-api-configmap
+                  key: JWT_SECRET
+
+            - name: COOKIE_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  name: book-api-configmap
+                  key: COOKIE_SECRET
+
+            - name: AUTH_COOKIE_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: book-api-configmap
+                  key: AUTH_COOKIE_NAME
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: book-api-service
+spec:
+  ports:
+    - name: http
+      port: 5000
+      targetPort: 5000
+  selector:
+    app: book-api
+
+  type: LoadBalancer
