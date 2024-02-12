@@ -1,0 +1,13 @@
+Effective Caching Strategies for Optimal Performance list down 4 of them
+Least Recently Used (LRU) Caching: This popular strategy evicts the least recently accessed item when the cache fills up, prioritizing frequently used data for efficient retrieval. It's ideal for limited cache space and unpredictable access patterns, commonly used in web caching.
+
+Time-based Caching: This simple approach assigns an expiration time (Time-To-Live) to each cached item. After expiry, the data is considered stale and refreshed from the source. This balances performance with data freshness, but setting the optimal TTL requires careful consideration.
+
+Write-through Caching: This strategy updates both the cache and the original data source simultaneously upon writes. It ensures data consistency but can increase write latency and burden the source. Use it for frequently updated data requiring immediate consistency.
+
+Write-behind Caching: This strategy prioritizes write speed by updating only the cache initially. Later, background processes update the original data source asynchronously. This reduces write latency but requires careful handling of consistency issues, suitable for less critical updates.
+
+Bonus:
+
+Cache-aside Pattern: Instead of caching directly, this pattern retrieves data from the source first. If not found, it's fetched, cached, and returned. Updates involve updating both cache and source. This offers flexibility but adds complexity.
+Remember, the best strategy depends on your specific needs and trade-offs between performance, consistency, and complexity. Consider factors like data volatility, access patterns, and scalability requirements when choosing the optimal approach.
