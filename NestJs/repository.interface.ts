@@ -24,7 +24,9 @@ export interface IBaseRepository<T> {
   findOneById(id: string | number): Promise<T>;
   findMany(attributes?: IFindManyOptions<T>): Promise<T[]>;
   hardDelete(data: T): Promise<T>;
+  hardDeleteById(id: string | number): Promise<T>;
   softDelete(data: T): Promise<T>;
+  softDeleteById(id: string | number): Promise<T>;
 }
 
 export class UserEntity {
@@ -59,7 +61,13 @@ export class BaseRepository implements IBaseRepository<UserEntity> {
   hardDelete(data: UserEntity): Promise<UserEntity> {
     throw new Error('Method not implemented.');
   }
+  hardDeleteById(id: string): Promise<UserEntity> {
+    throw new Error('Method not implemented.');
+  }
   softDelete(data: UserEntity): Promise<UserEntity> {
+    throw new Error('Method not implemented.');
+  }
+  softDeleteById(id: string): Promise<UserEntity> {
     throw new Error('Method not implemented.');
   }
 }
