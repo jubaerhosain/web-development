@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            const javascript = {
+                name: "javascript",
+                libs: ["A", "B"],
+                /*
+                print: function() {
+                    this.libs.forEach(function(lib) {
+                        console.log(this);
+                        console.log(this.name, lib);
+                    });
+                }
+                */
+               /*
+                print: function() {
+                    this.libs.forEach((lib) => {
+                        console.log(this);
+                        console.log(this.name, lib);
+                    });
+                }
+                */
+               /*
+                print: function() {
+                    this.libs.forEach(function(lib) {
+                        console.log(this);
+                        console.log(this.name, lib);
+                    }.bind(this));
+                }
+                */
+                print: function() {
+                    let self = this;
+                    this.libs.forEach(function(lib) {
+                        console.log(self);
+                        console.log(self.name, lib);
+                    });
+                }
+            }
+
+            javascript.print();
+        </script>
+    </body>
+</html>

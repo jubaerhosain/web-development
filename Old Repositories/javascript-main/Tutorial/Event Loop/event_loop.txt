@@ -1,0 +1,102 @@
+Understanding Event Loop, Call Stack, Event & Job Queue in Javascript
+In this article we will dig into how javascript works under the hood, how it executes our asynchronous javascript code, and in what order (Promise vs setTimeout), how it generates stack trace and much more..
+
+As most developers know, that Javascript is single threaded, means, two statement in javascript can not be executed in parallel. Execution happens line by line, which means each javascript statements are synchronous and blocking. But there is a way to run your code asynchronously, if you use setTimeout() function, a Web API given by browser, which makes sure that your code executes after specified time (in millisecond). Example code:
+
+console.log('Message 1');
+// Print message after 100 millisecond
+setTimeout(function() {
+   console.log('Message 2');
+}, 100);
+console.log('Message 3');
+setTimeout takes a callback function as first parameter, and time in millisecond as second parameter.
+
+After executing above statements, browser will print “Message 1” & “Message 3” first, then it will print “Message 2”. This is where event loop comes in, which makes sure your asynchronous code runs after all the synchronous code is done executing.
+
+Event Loop Visualisation
+I have created the structure of Event loop using HTML and CSS. You can check it out on Codepen :
+
+
+Stack: This is where all your javascript code gets pushed and executed one by one as the interpreter reads your program, and gets popped out once the execution is done. If your statement is asynchronous: setTimeout, ajax(), promise, or click event, then that code gets forwarded to Event table, this table is responsible for moving your asynchronous code to callback/event queue after specified time.
+
+Heap: This is where all the memory allocation happens for your variables, that you have defined in your program.
+
+Callback Queue: This is where your asynchronous code gets pushed to, and waits for the execution.
+
+Event Loop: Then comes the Event Loop, which keeps running continuously and checks the Main stack, if it has any frames to execute, if not then it checks Callback queue, if Callback queue has codes to execute then it pops the message from it to the Main Stack for the execution.
+
+Job Queue: Apart from Callback Queue, browsers have introduced one more queue which is “Job Queue”, reserved only for new Promise() functionality. So when you use promises in your code, you add .then() method, which is a callback method. These `thenable` methods are added to Job Queue once the promise has returned/resolved, and then gets executed.
+
+Quick Question now: Check these statements for example, can you predict the sequence of output?:
+
+console.log('Message no. 1: Sync');
+setTimeout(function() {
+   console.log('Message no. 2: setTimeout');
+}, 0);
+var promise = new Promise(function(resolve, reject) {
+   resolve();
+});
+promise.then(function(resolve) {
+   console.log('Message no. 3: 1st Promise');
+})
+.then(function(resolve) {
+   console.log('Message no. 4: 2nd Promise');
+});
+console.log('Message no. 5: Sync');
+Some of you might answer this:
+
+// Message no. 1: Sync
+// Message no. 5: Sync
+// Message no. 2: setTimeout
+// Message no. 3: 1st Promise
+// Message no. 4: 2nd Promise
+because setTimeout was pushed to Callback Queue first, then promise was pushed. But this is not the case, the output will be:
+
+// Message no. 1: Sync
+// Message no. 5: Sync
+// Message no. 3: 1st Promise
+// Message no. 4: 2nd Promise
+// Message no. 2: setTimeout
+All `thenable` callbacks of the promise are called first, then the setTimeout callback is called.
+
+Why?: Job Queue has high priority in executing callbacks, if event loop tick comes to Job Queue, it will execute all the jobs in job queue first until it gets empty, then will move to callback queue.
+
+If you want to dive deep about why promises gets called before setTimeout, then you can checkout this article Task, Microtasks, Queues and Schedules by Jake Archibald. Which explains this really well.
+
+Code execution notes
+Your asynchronous code will run after “Main Stack” is done with all the task execution.
+That is the good part: Your current statements/functions in the stack will run to completion. Async code can not interrupt them. Once your async code is ready to execute, it will wait for main stack to be empty.
+That also means that it is not guaranteed that your setTimeout() or any other async code will run exactly after the time that you have specified. That time is the minimum time after which your code will executed, it can be delayed if Main stack is busy executing existing code.
+If you use 0ms time in your setTimeout, it won’t run immediately (If main stack is busy). e.g:
+setTimeout(function() {
+   console.log('Message 1')
+}, 0);
+console.log('Message 2');
+In above example, the first output will be “Message 2”, then “Message 1”, even though the setTimeout is set to run after 0 millisecond. Once the browser encounters the setTimeout it pops it from Main Stack to Callback Queue, where it waits for Main stack to finish the second console.log, then setTimeout gets back to Main Stack, and runs the first console.log.
+
+If you are doing too much heavy computation, then it will make the browser unresponsive, because your main thread is blocked and can not process any other task. So user will be unable to do any click on your webpage. That’s when Browser throws “Script is taking too much time to execute” error, and gives you option to “kill the script” or “wait” for it.
+
+[Optional] Error StackTrace
+So we have learned, if interpreter encounters a function, then that function gets pushed into Stack, now if this function calls another function, then that function call will get pushed on top of the stack as well, and the chain goes on until a function execution gets completed or returns something, then only it get’s removed from the Stack and context gets return to the function that called the last function, and then execution get continues.
+
+This stack of function call, is what helps browser to give you Stack trace for the error occurred in a particular function. E.g:
+
+function func1 () {
+  // Accessing undefined variable will throw error
+  console.log(err);
+}
+function func2 () {
+ func1();
+}
+function func3 () {
+ func2()
+}
+// Calling func3, will result in error in func1
+func3();
+
+Stacktrace for the error
+As you can see in the error stacktrace, the error occurred in func1 function, which was called at line no. 7 in func2, and then func2 was called in func3 at line no. 11.
+
+Now when should you utilise event loop?
+When you need to do heavy computation, which is not required to run sequentially, means next statement can be executed without it. In that case you would not want to block the main thread because of that computation.
+When you want to execute your code in the end, after all the other statement/functions are done executing.

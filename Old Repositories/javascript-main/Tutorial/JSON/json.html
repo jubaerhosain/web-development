@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h2>Creating an Object from a JSON String</h2>
+        <p id="demo"></p>
+
+        <script>
+            const txt = '{"name":"John", "age":30, "city":"New York"}';
+            const obj = JSON.parse(txt);
+            document.getElementById("demo").innerHTML = obj.name + ", " + obj.age;
+
+            const txt1 = '{"name": "Jubaer", "age": [2, 3, 4, 5], "hometown": "sunamganj"}';
+            const obj1 = JSON.parse(txt1);
+            console.log(obj1);
+
+            const txt2 = '{"name": "Jubaer", "date": "1999-12-17", "hometown": "sunamganj"}';
+            const obj2 = JSON.parse(txt2);
+            obj2.date = new Date(obj2.date);
+            console.log(obj2);
+
+            // Convert a string into a date, using the reviver function:
+            const text3 = '{"name":"John", "date":"1986-12-14", "city":"New York"}';
+            const obj3 = JSON.parse(text3, function (key, value) {
+                if (key == "date") {
+                    return new Date(value);
+                } else {
+                    return value;
+                }
+            });
+            console.log(obj3);
+
+            // json array
+            const myJSON = '["Ford", "BMW", "Fiat"]';
+            const myArray = JSON.parse(myJSON);
+            console.log(myArray);
+        </script>
+    </body>
+</html>

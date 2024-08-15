@@ -1,0 +1,24 @@
+Code execution notes
+Your asynchronous code will run after “Main Stack” is done with all the task execution.
+That is the good part: Your current statements/functions in the stack will run to completion. 
+Async code can not interrupt them. Once your async code is ready to execute, it will wait for 
+main stack to be empty.
+That also means that it is not guaranteed that your setTimeout() or any other async code will 
+run exactly after the time that you have specified. That time is the minimum time after which 
+your code will executed, it can be delayed if Main stack is busy executing existing code.
+If you use 0ms time in your setTimeout, it won’t run immediately (If main stack is busy). e.g:
+setTimeout(function() {
+   console.log('Message 1')
+}, 0);
+console.log('Message 2');
+In above example, the first output will be “Message 2”, then “Message 1”, even though the setTimeout 
+is set to run after 0 millisecond. Once the browser encounters the setTimeout it pops it from Main 
+Stack to Callback Queue, where it waits for Main stack to finish the second console.log, then setTimeout 
+gets back to Main Stack, and runs the first console.log.
+
+If you are doing too much heavy computation, then it will make the browser unresponsive, because your 
+main thread is blocked and can not process any other task. So user will be unable to do any click on 
+your webpage. That’s when Browser throws “Script is taking too much time to execute” error, and gives 
+you option to “kill the script” or “wait” for it.
+
+asynchronous code runs after all the synchronous code in main stack is done executing.

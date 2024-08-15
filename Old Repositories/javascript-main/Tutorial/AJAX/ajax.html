@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="demo">
+            <h2>Let AJAX change this text</h2>
+            <button type="button" onclick="loadDoc()">Change Content</button>
+            <button type="button" onclick="update()">Click Here</button>
+        </div>
+        <script>
+            function loadDoc() {
+                // create a new request
+                const xhttp = new XMLHttpRequest();
+
+                // what to do after response arrives
+                xhttp.onload = function() {
+                    // document.getElementById('demo').innerHTML = xhttp.responseText;
+                    document.getElementById('demo').innerHTML = this.responseText;
+                    console.log(this.getAllResponseHeaders());
+                }
+
+                // prepare request
+                xhttp.open('GET', './hello.txt', true);
+
+                // send request
+                xhttp.send();
+            }
+
+            function multipleCallback() {
+                document.getElementById('demo').innerHTML = 'Updated';
+            }
+        </script>
+    </body>
+</html>
