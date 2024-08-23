@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE `Book` ADD COLUMN `genre` VARCHAR(191) NOT NULL DEFAULT 'Unknown';
